@@ -4,8 +4,10 @@ import fr.kumiaigorpg.api.pojo.Abonnement;
 import fr.kumiaigorpg.api.pojo.Users;
 import fr.kumiaigorpg.api.repository.UsersRepository;
 import fr.kumiaigorpg.api.security.JwtService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="http://localhost:3306")
 public class UsersController {
 
     private final UsersRepository repository;
@@ -79,13 +81,16 @@ public class UsersController {
     }
 
     @PostMapping
-    public Users create(@RequestBody Users user){
+    public Users create(@Valid @RequestBody Users user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Users> update(@PathVariable String id, @RequestBody Users updated ){
+    public ResponseEntity<Users> update(@PathVariable String id, @RequestBody Users updated, @AuthenticationPrincipal String email){
+        Users current = repository.findByEmail(email).orElseThrow();
+        if (!current.getId().equals(id))
+            return ResponseEntity.status(403).build();
         return repository.findById(id).map(u -> {
             u.setUsername(updated.getUsername());
             u.setEmail(updated.getEmail());
