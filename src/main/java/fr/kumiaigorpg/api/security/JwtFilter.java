@@ -32,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
         System.out.println("=== JwtFilter ===");
         System.out.println("URL    : " + request.getRequestURI());
         System.out.println("Method : " + request.getMethod());
-        System.out.println("Header : " + authHeader); // ← null ou Bearer xxx ?
+        System.out.println("Header : " + authHeader);
 
         // Si pas de token, on laisse passer (les routes publiques seront gérées par SecurityConfig)
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
