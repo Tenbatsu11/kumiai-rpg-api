@@ -73,7 +73,14 @@ Here is and example of a GET call with the user ID in URL ( note : all IDs are i
 ```
 
 ## API Endpoints
-To use the api endpoints, start the api and user Swagger to see all available endpoints and their working states.
+To use the api endpoints, start the api and user Swagger to see all available endpoints and their working states with the url :
+```bash
+http://localhost:8080/swagger-ui/index.html
+```
+And search for:
+```bash
+/v3/api-docs
+```
 ## Troubleshooting
 Common issues and solutions:
 - **Database connection failed**: Verify MariaDB is running and credentials are correct
