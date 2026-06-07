@@ -1,32 +1,80 @@
-Hellow and Welcome to the page for the Kumiai GO Learn api for desktop app
+# Kumiai RPG API
 
+A Spring Boot REST API designed for the Kumiai GO Learn desktop application and website.
 
------ Quick guide on the use of the api -----
+## Table of Contents
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 
-The api is meant to be used with the desktop Kumiai Go Learn app and later on with the Kumiai Go Learn website.
-To check the use cases and fonctionnality of the desktop app, please refer to the according repository.
+## Overview
+The Kumiai GO Learn API provides backend services for the Kumiai GO Learn ecosystem. For use cases and features of the desktop app, see the corresponding desktop application repository.
 
------ Before starting the api -----
+## Prerequisites
+- Java 11 or higher
+- Maven 3.6 or higher
+- MariaDB 10.5 or higher
 
-Before anything else, you should create the "application.properties" file under the resources folder. 
-Note that the application works under maven with spring boot dependencies : as follow 
-<img width="720" height="535" alt="image" src="https://github.com/user-attachments/assets/c4ca7dd7-0b42-4370-a4f3-1e52e22e9e83" />
+## Installation
+1. Clone the repository
+2. Install Maven dependencies:
+   ```bash
+   mvn clean install
+   ```
+3. Create `src/main/resources/application.properties` (see Configuration section below)
+4. Build the project:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-After installing all dependencies, modify the application.properties as follow : 
+## Configuration
+Configure `src/main/resources/application.properties` with your database and JWT settings:
 
+```properties
+# Hibernate - Database schema management
 spring.jpa.hibernate.ddl-auto=update
 
-spring.datasource.url= jdbc:mysql:"your db url"
+# Database Connection
+spring.datasource.url=jdbc:mysql://your-db-url
+spring.datasource.username=your-db-username
+spring.datasource.password=your-db-password
 
-spring.datasource.username= DB username
+# JWT Authentication
+jwt.secret=your-generated-jwt-secret
+jwt.expiration=86400000
+```
 
-spring.datasource.password= DB password
+### Configuration Details
+- **spring.jpa.hibernate.ddl-auto**: Set to `update` for automatic schema updates (use `create-drop` for development)
+- **spring.datasource.url**: Replace `your-db-url` with your MariaDB connection URL
+- **spring.datasource.username**: Your database user
+- **spring.datasource.password**: Your database password
+- **jwt.secret**: Generate a secure JWT secret for your API version
+- **jwt.expiration**: Token validity duration in milliseconds (86400000 = 24 hours)
 
-jwt.secret= JWT Token generated for your version of the api
-jwt.expiration=86400000 #You can modify this value to change the validity duration of your token
+**Note:** We recommend using MariaDB for database compatibility with the entire ecosystem.
 
------ Final note -----
+## Usage
+[Add example API calls and usage patterns here]
 
-Please consider using a mariaDB database as the whole ecosystem revolves around it.
+## API Endpoints
+[Document your available endpoints or link to API documentation]
 
-Thank you for your reading and good luck.
+## Troubleshooting
+Common issues and solutions:
+- **Database connection failed**: Verify MariaDB is running and credentials are correct
+- **JWT token invalid**: Ensure `jwt.secret` is properly configured
+- **Port already in use**: Configure `server.port` in application.properties
+
+## Contributing
+Contributions are welcome! Please follow the project's coding standards and submit pull requests with clear descriptions.
+
+## License
+[Add your license information here]
+
+Thank you for using Kumiai GO Learn API. Good luck!
