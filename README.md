@@ -60,11 +60,20 @@ jwt.expiration=86400000
 **Note:** We recommend using MariaDB for database compatibility with the entire ecosystem.
 
 ## Usage
-[Add example API calls and usage patterns here]
+Here is and example of a GET call with the user ID in URL ( note : all IDs are in UUID for safety reasons )
+```bash
+{
+  "id": "string",
+  "email": "string",
+  "password": "string",
+  "username": "string",
+  "userlvl": "N5",
+  "abonnement": "GRATUIT"
+}
+```
 
 ## API Endpoints
-[Document your available endpoints or link to API documentation]
-
+To use the api endpoints, start the api and user Swagger to see all available endpoints and their working states.
 ## Troubleshooting
 Common issues and solutions:
 - **Database connection failed**: Verify MariaDB is running and credentials are correct
