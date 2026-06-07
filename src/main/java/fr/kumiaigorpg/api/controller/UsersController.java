@@ -26,7 +26,7 @@ public class UsersController {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    //private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     @GetMapping
     public List<Users> getAll(){

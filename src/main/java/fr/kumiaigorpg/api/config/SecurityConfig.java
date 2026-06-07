@@ -41,6 +41,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/users/*/abonnement").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/vocabulaire/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/kanji/**").permitAll()
+                        // Mettre en commentaire si les routes Swagger ne sont pas utilisées
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
                         // Tout le reste nécessite un token JWT
                         .anyRequest().authenticated()
                 )
