@@ -91,6 +91,5 @@ Common issues and solutions:
 Contributions are welcome! Please follow the project's coding standards and submit pull requests with clear descriptions.
 
 ## License
-[Add your license information here]
 
 Thank you for using Kumiai GO Learn API. Good luck!
